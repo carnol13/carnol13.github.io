@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Equipment Check Out</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, textarea, label { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Comic_Sans, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 50px;
+      color: #fff;
+      z-index: 2;
+      line-height: 83px;
+      }
+      legend {
+      padding: 10px;      
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 18px;
+      color: #fff;
+      background-color: #006622;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 8px #006622; 
+      }
+      .banner {
+      position: relative;
+      height: 250px;
+      background-image: url("/uploads/media/default/0001/02/b23a2c8c49b8e43249487140e4c2e22a63bd7cb8.jpeg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color:  #006622;
+      }
+      .item input:hover, .item select:hover, .item textarea:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 3px 0  #006622;
+      color: #006622;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .item span {
+      color: red;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #00b33c;
+      }
+      .item i {
+      right: 1%;
+      top: 30px;
+      z-index: 1;
+      }
+      .week {
+      display:flex;
+      justify-content:space-between;
+      }
+      .columns {
+      display:flex;
+      justify-content:space-between;
+      flex-direction:row;
+      flex-wrap:wrap;
+      }
+      .columns div {
+      width:48%;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio], input[type=checkbox]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 15px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      .question-answer label {
+      display: block;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid  #006622;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid  #006622;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .flax {
+      display:flex;
+      justify-content:space-around;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background:  #006622;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background:  #00b33c;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .name-item div {
+      width: calc(50% - 20px);
+      }
+      .name-item div input {
+      width:97%;}
+      .name-item div label {
+      display:block;
+      padding-bottom:5px;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="testbox">
+    <form id = "CheckOutForm" >
+      <div class="banner">
+        <h1> Equipment Check Out</h1>
+      </div>
+      <br/>
+      <fieldset>
+        <legend>Info</legend>
+        <div class="columns">
+          <div class="item">
+            <label for="fname">First Name<span>*</span></label>
+         <input id="fname" type="text" name="firstName" />
+          </div>
+          <div class="item">
+            <label for="lname"> Last Name<span>*</span></label>
+            <input id="lname" type="text" name="lastName" />
+          </div>
+          <div class="item">
+            <label for="eaddress">Email Address<span>*</span></label>
+          <input id="eaddress" type="text"   name="Email" />
+          </div>
+          <div class="item">
+            <label for="year">Year<span>*</span></label>
+            <input id="year" type="text"   name="Year" />
+          </div>
+      </fieldset>
+      <br/>
+      <fieldset>
+      <legend>Dates</legend>
+      <div class="columns">
+      <div class="item">
+      <label for="checkoutdate">Check-Out Date <span>*</span></label>
+       <input id="checkoutdate" type="date" name="Check Out Date" />
+      <i class="fas fa-calendar-alt"></i>
+      </div>
+      <div class="item">
+      <label for="returndate">Return Date <span>*</span></label>
+       <input id="returndate" type="date" name="Return Date" />
+      <i class="fas fa-calendar-alt"></i>
+      </div>
+      <div class="item">
+      <p>Check-Out Time </p>
+      <select id = "checkOutTime" name = "Check Out Time">
+      <option value="" disabled selected>Select time</option>
+      <option text="1" >Morning</option>
+      <option text="2">Afternoon</option>
+      <option text="3">Evening</option>
+      </select>
+      </div>
+      <div class="item">
+      <p>Return Time </p>
+      <select id = "ReturnTime" name = "Return Time">
+      <option text="4" disabled selected>Select time</option>
+      <option text="5" >Morning</option>
+      <option text="6">Afternoon</option>
+      <option text="7">Evening</option>
+      </select>
+      </div>    
+      <div class="item">
+      <p>What piece of equipment?</p>
+      <select class = "equipment" name="Equipment" multiple id = "equipment">
+      <option text="8" disabled selected>Piece of equipment</option>
+      <option text="9" >M-Audio Oxygen Pro Mini #1</option>
+      <option text="10">M-Audio Oxygen Pro Mini #2</option>
+      <option text="11">M-Audio Oxygen Pro Mini #3</option>
+      <option text="12">Leap Motion</option>
+      <option text="13">NanoPad2 #1</option>
+      <option text="13">NanoPad2 #2</option>
+      <option text="13">NanoKontrol2 #1</option>
+      <option text="13">NanoKontrol2 #2</option>
+      <option text="13">Icon Platform M</option>
+      <option text="13">Icon Platform X+</option>
+      <option text="13">Akai MPD226</option>
+      <option text="13">SnyderPhonics Mantra</option>
+      <option text="13">FBV Expression MKII</option>
+      <option text="13">Ableton Push 2 #1</option>
+      <option text="13">Ableton Push 2 #2</option>
+      <option text="13">Joue Play</option>
+      <option text="13">QuNeo</option>
+      </select>  
+      </fieldset>
+      <div class="btn-block">
+      <button type="submit" href="/">Submit</button>
+      </div>
+    </form>
+    </div>
+  </body>
+  <script src = 'checkoutForm.js' ></script>
+</html>
